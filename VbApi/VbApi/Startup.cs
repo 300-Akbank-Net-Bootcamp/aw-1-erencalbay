@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+
 namespace VbApi;
 
 public class Startup
@@ -15,8 +17,10 @@ public class Startup
         
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
+
     }
-    
+
     public void Configure(IApplicationBuilder app,IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
